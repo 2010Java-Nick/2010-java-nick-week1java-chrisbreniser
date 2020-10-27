@@ -1,6 +1,7 @@
 package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -92,34 +93,19 @@ public class EvaluationService {
 
 		public boolean isEquilateral() {
 			// If all three sides are equal
-			if(this.sideOne == this.sideTwo && this.sideOne == this.sideThree) {
-				return true;
-			}
-			else {
-				return false;
-			}
+			return (this.sideOne == this.sideTwo && this.sideOne == this.sideThree);
 		}
 
 		public boolean isIsosceles() {
 			// If at least two sides are equal
-			if(this.sideOne == this.sideTwo || this.sideOne == this.sideThree || this.sideTwo == this.sideThree) {
-				return true;
-			}
-			else {
-				return false;
-			}
+			return (this.sideOne == this.sideTwo || this.sideOne == this.sideThree || this.sideTwo == this.sideThree);
+			
 		}
 
 		public boolean isScalene() {
 			// If no sides are equal
-			if(this.sideOne != this.sideTwo && this.sideOne != this.sideThree && this.sideTwo != this.sideThree) {
-				return true;
-			}
-			else {
-				return false;
-			}
+			return (this.sideOne != this.sideTwo && this.sideOne != this.sideThree && this.sideTwo != this.sideThree);
 		}
-
 	}
 
 	/**
@@ -139,7 +125,53 @@ public class EvaluationService {
 	 */
 	public int getScrabbleScore(String string) {
 		// TODO Write an implementation for this method declaration
-		return 0;
+		
+		// build map of letters as keys with score as value
+		final Map<Character, Integer> lettersMap = new HashMap<Character, Integer>();
+		
+		lettersMap.put('A', 1);
+	    lettersMap.put('E', 1); 
+	    lettersMap.put('I', 1);
+	    lettersMap.put('O', 1);
+	    lettersMap.put('U', 1);
+	    lettersMap.put('L', 1);
+	    lettersMap.put('N', 1);
+	    lettersMap.put('R', 1);
+	    lettersMap.put('S', 1);
+	    lettersMap.put('T', 1);
+	    
+	    lettersMap.put('D', 2);
+	    lettersMap.put('G', 2);
+	    
+	    lettersMap.put('B', 3);
+	    lettersMap.put('C', 3);
+	    lettersMap.put('M', 3);
+	    lettersMap.put('P', 3);
+	    
+	    lettersMap.put('F', 4);
+	    lettersMap.put('H', 4);
+	    lettersMap.put('V', 4);
+	    lettersMap.put('W', 4);
+	    lettersMap.put('Y', 4);
+	    
+	    lettersMap.put('K', 5);
+
+	    lettersMap.put('J', 6);
+	    lettersMap.put('X', 6);
+	    
+	    lettersMap.put('Q', 7);
+	    lettersMap.put('Z', 7);
+		
+		// loop through string and count all chars as upper and add score
+	    int totalValue = 0;
+
+        for (int j = 0; j < string.length(); j++) {
+
+            totalValue += lettersMap.get(string.toUpperCase().charAt(j));
+        }
+
+        System.out.println(string + " = " + totalValue);
+        return totalValue;
 	}
 
 	/**
@@ -188,10 +220,7 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		int count
-		String[] words = string.split("\\W");
-		
-		return count;
+		return null; //this would best be set as a map.toString return. That should format it the way shown in the example
 	}
 
 	/**
