@@ -102,12 +102,22 @@ public class EvaluationService {
 
 		public boolean isIsosceles() {
 			// If at least two sides are equal
-			return false;
+			if(getSideOne() == getSideTwo() || getSideOne() == getSideThree() || getSideTwo() == getSideThree()) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 
 		public boolean isScalene() {
 			// If no sides are equal
-			return false;
+			if(getSideOne() != getSideTwo() && getSideOne() != getSideThree() && getSideTwo() != getSideThree()) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 
 	}
