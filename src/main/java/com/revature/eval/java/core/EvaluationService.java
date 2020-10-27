@@ -32,7 +32,7 @@ public class EvaluationService {
 	public String acronym(String phrase) {
 		
 		String acronym = "";
-		String[] words = phrase.split("\\W"); // \\W splits at non word characters
+		String[] words = phrase.split("\\W"); // \\W splits at non word characters. Yay google!
 		
 		for(String value: words) {
 			acronym += value.toUpperCase().charAt(0);
@@ -92,7 +92,7 @@ public class EvaluationService {
 
 		public boolean isEquilateral() {
 			// If all three sides are equal
-			if(getSideOne() == getSideTwo() && getSideOne() == getSideThree()) {
+			if(this.sideOne == this.sideTwo && this.sideOne == this.sideThree) {
 				return true;
 			}
 			else {
@@ -102,7 +102,7 @@ public class EvaluationService {
 
 		public boolean isIsosceles() {
 			// If at least two sides are equal
-			if(getSideOne() == getSideTwo() || getSideOne() == getSideThree() || getSideTwo() == getSideThree()) {
+			if(this.sideOne == this.sideTwo || this.sideOne == this.sideThree || this.sideTwo == this.sideThree) {
 				return true;
 			}
 			else {
@@ -112,7 +112,7 @@ public class EvaluationService {
 
 		public boolean isScalene() {
 			// If no sides are equal
-			if(getSideOne() != getSideTwo() && getSideOne() != getSideThree() && getSideTwo() != getSideThree()) {
+			if(this.sideOne != this.sideTwo && this.sideOne != this.sideThree && this.sideTwo != this.sideThree) {
 				return true;
 			}
 			else {
@@ -188,8 +188,10 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		int count
+		String[] words = string.split("\\W");
+		
+		return count;
 	}
 
 	/**
