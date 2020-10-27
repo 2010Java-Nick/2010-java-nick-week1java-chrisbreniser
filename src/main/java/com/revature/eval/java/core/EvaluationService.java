@@ -33,7 +33,7 @@ public class EvaluationService {
 	public String acronym(String phrase) {
 		
 		String acronym = "";
-		String[] words = phrase.split("\\W"); // \\W splits at non word characters. Yay google!
+		String[] words = phrase.split("\\W"); // \\W splits at non word characters.
 		
 		for(String value: words) {
 			acronym += value.toUpperCase().charAt(0);
@@ -207,7 +207,7 @@ public class EvaluationService {
 	public String cleanPhoneNumber(String string) {
 		
 		// remove all non word characters
-		String cleanNumber = string.replaceAll("\\D", "");
+		String cleanNumber = string.replaceAll("\\D", ""); // \\D is all non-digits
 		
 		// if length is greater than 10, it must have a country code to be removed under these constraints 
 		while(cleanNumber.length() > 10) {
@@ -237,11 +237,17 @@ public class EvaluationService {
 		Map<String, Integer>  wordMap = new HashMap<String, Integer>();
 		
 		// for loop through a split string \\W and add increment existing words and add new ones
-		
-		
-		// 
-		
-		return null; //this would best be set as a map.toString return. That should format it the way shown in the example
+		for(String value : string.split("\\W")) {
+			if(!wordMap.containsKey(value)) {
+				wordMap.put(value, 1);
+				wordMap.remove("");
+			}
+			else {
+				wordMap.put(value, wordMap.get(value)+1);
+			}
+		}
+
+		return wordMap;
 	}
 
 	/**
@@ -340,8 +346,16 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isArmstrongNumber(int input) {
-		// TODO Write an implementation for this method declaration
-		return false;
+
+		int inputLength = String.valueOf(input).length();
+		String inputString = String.valueOf(input).toString();
+		int sum = 0;
+		
+		for(int i = 0; i < inputLength; i++) {
+			sum += Math.pow(Character.getNumericValue(inputString.charAt(i)), inputLength);
+		}
+			
+		return input == sum;
 	}
 
 	/**
