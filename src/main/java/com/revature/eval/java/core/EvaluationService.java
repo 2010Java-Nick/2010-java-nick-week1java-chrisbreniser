@@ -124,7 +124,6 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int getScrabbleScore(String string) {
-		// TODO Write an implementation for this method declaration
 		
 		// build map of letters as keys with score as value
 		final Map<Character, Integer> lettersMap = new HashMap<Character, Integer>();
@@ -170,7 +169,7 @@ public class EvaluationService {
             totalValue += lettersMap.get(string.toUpperCase().charAt(j));
         }
 
-        System.out.println(string + " = " + totalValue);
+//        System.out.println(string + " = " + totalValue); //Uncomment to print scores
         return totalValue;
 	}
 
@@ -206,8 +205,21 @@ public class EvaluationService {
 	 * NANP-countries, only 1 is considered a valid country code.
 	 */
 	public String cleanPhoneNumber(String string) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		// remove all non word characters
+		String cleanNumber = string.replaceAll("\\D", "");
+		
+		// if length is greater than 10, it must have a country code to be removed under these constraints 
+		while(cleanNumber.length() > 10) {
+			cleanNumber = cleanNumber.substring(1);
+		}
+		
+//		System.out.println(string);
+//		System.out.println(cleanNumber);
+		
+		// TODO Check if number is shorter than 10 char and throw IllegalArgumentException
+		
+		return cleanNumber;
 	}
 
 	/**
@@ -220,6 +232,15 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Map<String, Integer> wordCount(String string) {
+		
+		// create empty map for words
+		Map<String, Integer>  wordMap = new HashMap<String, Integer>();
+		
+		// for loop through a split string \\W and add increment existing words and add new ones
+		
+		
+		// 
+		
 		return null; //this would best be set as a map.toString return. That should format it the way shown in the example
 	}
 
