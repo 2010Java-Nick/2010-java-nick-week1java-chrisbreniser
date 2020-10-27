@@ -27,11 +27,18 @@ public class EvaluationService {
 	 * long name like Portable Network Graphics to its acronym (PNG).
 	 * 
 	 * @param phrase
-	 * @return
+	 * @return acronym
 	 */
 	public String acronym(String phrase) {
-		// TODO Write an implementation for this method declaration
-		return null;
+		
+		String acronym = "";
+		String[] words = phrase.split("\\W"); // \\W splits at non word characters
+		
+		for(String value: words) {
+			acronym += value.toUpperCase().charAt(0);
+		}
+		
+		return acronym;
 	}
 
 	/**
@@ -84,17 +91,22 @@ public class EvaluationService {
 		}
 
 		public boolean isEquilateral() {
-			// TODO Write an implementation for this method declaration
-			return false;
+			// If all three sides are equal
+			if(getSideOne() == getSideTwo() && getSideOne() == getSideThree()) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 
 		public boolean isIsosceles() {
-			// TODO Write an implementation for this method declaration
+			// If at least two sides are equal
 			return false;
 		}
 
 		public boolean isScalene() {
-			// TODO Write an implementation for this method declaration
+			// If no sides are equal
 			return false;
 		}
 
