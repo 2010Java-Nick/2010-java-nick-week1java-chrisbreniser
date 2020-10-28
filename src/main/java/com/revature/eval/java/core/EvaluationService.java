@@ -156,11 +156,11 @@ public class EvaluationService {
 	    
 	    lettersMap.put('K', 5);
 
-	    lettersMap.put('J', 6);
-	    lettersMap.put('X', 6);
+	    lettersMap.put('J', 8);
+	    lettersMap.put('X', 8);
 	    
-	    lettersMap.put('Q', 7);
-	    lettersMap.put('Z', 7);
+	    lettersMap.put('Q', 10);
+	    lettersMap.put('Z', 10);
 		
 		// loop through string and count all chars as upper and add score
 	    int totalValue = 0;
@@ -210,16 +210,13 @@ public class EvaluationService {
 		// remove all non word characters
 		String cleanNumber = string.replaceAll("\\D", ""); // \\D is all non-digits
 		
-		// if length is greater than 10, it must have a country code to be removed under these constraints 
-		while(cleanNumber.length() > 10) {
-			cleanNumber = cleanNumber.substring(1);
+		System.out.println(string);
+		System.out.println(cleanNumber);
+		
+		if(cleanNumber.length() != 10) {
+			throw new IllegalArgumentException("Invalid Length");
 		}
-		
-//		System.out.println(string);
-//		System.out.println(cleanNumber);
-		
-		// TODO Check if number is shorter than 10 char and throw IllegalArgumentException
-		
+				
 		return cleanNumber;
 	}
 
@@ -286,7 +283,7 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
-	static class BinarySearch<T> {
+	static class BinarySearch<T> { // reps a genaric 
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
