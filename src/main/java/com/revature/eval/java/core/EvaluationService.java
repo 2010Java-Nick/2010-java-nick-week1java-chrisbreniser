@@ -34,12 +34,12 @@ public class EvaluationService {
 	public String acronym(String phrase) {
 		
 		String acronym = "";
-		String[] words = phrase.split("\\W"); // \\W splits at non word characters.
+		String[] words = phrase.split("\\W+"); // \\W+ splits at non word characters and merges multiple non-word-chars into one space
 		
 		for(String value: words) {
 			acronym += value.toUpperCase().charAt(0);
 		}
-		
+				
 		return acronym;
 	}
 
@@ -328,8 +328,33 @@ public class EvaluationService {
 	 */
 	public String toPigLatin(String string) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		
+		// split string into individual words
+		String[] word = string.split(" "); // Splits the string into an array of words
+        String output = "";
+        String lowerCaseWord = "";
+        String consonant = "";
+        
+        for(int i = 0; i < word.length; i++) {
+        	
+        	// make a separate function
+	        	// if it starts with a vowel, add "ay" to the end and break out
+	        	// if not pull out consonant and store on the side
+	        	// when you hit a vowel, move consonant to end and add ay after
+        }
+		
+		return output;
 	}
+	
+	/*
+	 * added vowel checker for above program
+	 */
+	public Boolean isVowel(char ch) {
+        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y') {
+            return true;
+        }
+        return false;
+    }
 
 	/**
 	 * 9. An Armstrong number is a number that is the sum of its own digits each
@@ -384,9 +409,7 @@ public class EvaluationService {
 		if(l > 1) {
 			factors.add((long) l);
 		}
-		
-		System.out.println(factors);
-		
+				
 		return factors;
 	}
 
