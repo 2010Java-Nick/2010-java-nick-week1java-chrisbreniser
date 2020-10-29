@@ -357,16 +357,6 @@ public class EvaluationService {
 		return string.stripTrailing();
 	}
 	
-//	/*
-//	 * found a vowel checker online but wanted to implement a shorter idea used above
-//	 */
-//	public Boolean isVowel(char ch) {
-//        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y') {
-//            return true;
-//        }
-//        return false;
-//    }
-
 	/**
 	 * 9. An Armstrong number is a number that is the sum of its own digits each
 	 * raised to the power of the number of digits.
@@ -458,11 +448,34 @@ public class EvaluationService {
 		}
 
 		public String rotate(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			
+			System.out.println("string was: " + string);
+			StringBuffer cipher = new StringBuffer();
+			
+			for (int i = 0; i < string.length(); i++){
+				
+				if(Character.isUpperCase(string.charAt(i))) {
+					char temp = (char)(((int)string.charAt(i) + this.key - 65) % 26 + 65);
+					cipher.append(temp);
+				}
+				else if(Character.isLowerCase(string.charAt(i))) {
+					char temp = (char)(((int)string.charAt(i) + this.key - 97) % 26 + 97);
+					cipher.append(temp);
+				}
+				else {
+					cipher.append(string.charAt(i));
+				}
+			}
+			
+			string = cipher.toString();
+			System.out.println(string);
+			
+			return string;
 		}
 
 	}
+	
+	
 
 	/**
 	 * 12. Given a number n, determine what the nth prime is.
