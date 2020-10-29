@@ -207,12 +207,8 @@ public class EvaluationService {
 	 */
 	public String cleanPhoneNumber(String string) {
 		
-		// remove all non word characters
 		String cleanNumber = string.replaceAll("\\D", ""); // \\D is all non-digits
-		
-		System.out.println(string);
-		System.out.println(cleanNumber);
-		
+				
 		if(cleanNumber.length() != 10) {
 			throw new IllegalArgumentException("Invalid Length");
 		}
@@ -283,11 +279,26 @@ public class EvaluationService {
 	 * binary search is a dichotomic divide and conquer search algorithm.
 	 * 
 	 */
-	static class BinarySearch<T> { // reps a genaric 
+	static class BinarySearch<T extends Comparable<T>> { //NOTE TO SELF: 'T' represents a generic 
 		private List<T> sortedList;
 
 		public int indexOf(T t) {
-			// TODO Write an implementation for this method declaration
+			List<T> list = this.getSortedList();  
+			int left = 0;
+			int mid = 0;
+			int right = list.size();
+			
+			while(left <= right) {
+				mid = (left + (right -1)) / 2; // setup mid to be middle of list rounded down
+				
+				if(list.get(mid).compareTo(t) == 0) {
+					return mid;
+				} else if(list.get(mid).compareTo(t) < 0) {
+					left = mid + 1;
+				} else {
+					right = mid - 1;
+				}
+			}
 			return 0;
 		}
 
@@ -324,34 +335,37 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-		
 		// split string into individual words
-		String[] word = string.split(" "); // Splits the string into an array of words
-        String output = "";
-        String lowerCaseWord = "";
-        String consonant = "";
+		String[] words = string.split(" "); // Splits the string into an array of words 
+		string = "";
         
-        for(int i = 0; i < word.length; i++) {
-        	
-        	// make a separate function
-	        	// if it starts with a vowel, add "ay" to the end and break out
-	        	// if not pull out consonant and store on the side
-	        	// when you hit a vowel, move consonant to end and add ay after
+        for(String tempString: words) {
+        	while(true) {
+        		String vowelList = "aeiou";
+        		if(!vowelList.contains(Character.toString(tempString.charAt(0)))) { // checks if first char in a given word is a vowel
+        			tempString = tempString.substring(1) + tempString.charAt(0); // 
+        		} else {
+        			if(tempString.charAt(0) == 'u' && tempString.charAt(1) == 'i') { // check for 'ui' cases. This shows up in things like quick and quite
+        				tempString = tempString.substring(1) + tempString.charAt(0);
+        			}
+        			tempString += "ay";
+        			break;
+        		}
+        	}
+    		string += tempString + " ";
         }
-		
-		return output;
+		return string.stripTrailing();
 	}
 	
-	/*
-	 * added vowel checker for above program
-	 */
-	public Boolean isVowel(char ch) {
-        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y') {
-            return true;
-        }
-        return false;
-    }
+//	/*
+//	 * found a vowel checker online but wanted to implement a shorter idea used above
+//	 */
+//	public Boolean isVowel(char ch) {
+//        if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u' || ch == 'y') {
+//            return true;
+//        }
+//        return false;
+//    }
 
 	/**
 	 * 9. An Armstrong number is a number that is the sum of its own digits each
@@ -392,7 +406,6 @@ public class EvaluationService {
 	 * @return primes
 	 */
 	public List<Long> calculatePrimeFactorsOf(long l) {
-		// TODO Write an implementation for this method declaration
 		
 		List<Long> factors = new ArrayList<Long>();
 		
