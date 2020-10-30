@@ -342,10 +342,10 @@ public class EvaluationService {
 		// split string into individual words
 		String[] words = string.split(" "); // Splits the string into an array of words 
 		string = "";
+		String vowelList = "aeiou";
         
         for(String tempString: words) {
         	while(true) {
-        		String vowelList = "aeiou";
         		if(!vowelList.contains(Character.toString(tempString.charAt(0)))) { // checks if first char in a given word is a vowel
         			tempString = tempString.substring(1) + tempString.charAt(0); // 
         		} else {
@@ -686,10 +686,10 @@ public class EvaluationService {
 	 * @return
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
-		// TODO Write an implementation for this method declaration
+		// If the given already supports adding seconds, add them and return
 		if (given.isSupported(ChronoUnit.SECONDS)) {
 			return given.plus(1_000_000_000, ChronoUnit.SECONDS);
-		} else {
+		} else { // else, pull out the proper information from given and put it into a supported type.
 			LocalDate date = LocalDate.from(given);
 			LocalDateTime dateTime = date.atStartOfDay();
 			return dateTime.plus(1_000_000_000, ChronoUnit.SECONDS);
@@ -709,9 +709,31 @@ public class EvaluationService {
 	 * @param set
 	 * @return
 	 */
-	public int getSumOfMultiples(int i, int[] set) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+	public int getSumOfMultiples(int max, int[] set) {
+
+		List<Integer> multiples = new ArrayList<Integer>();
+		int sum = 0;
+		
+		for (int i = 0; i < set.length; i++) {
+			int start = set[i];
+			int current = start;
+			while (current < max) {
+				if (!multiples.contains(current)) {
+					multiples.add(current);
+				}
+				current += start;
+			}
+		}
+		
+		System.out.println(multiples);
+		
+		for (int num : multiples) {
+			sum += num;
+		}
+		
+		System.out.println("Sum: " + sum);
+		
+		return sum;
 	}
 
 	/**
@@ -752,6 +774,9 @@ public class EvaluationService {
 	 */
 	public boolean isLuhnValid(String string) {
 		// TODO Write an implementation for this method declaration
+		
+		List<Integer> 
+		
 		return false;
 	}
 
