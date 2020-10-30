@@ -2,6 +2,7 @@ package com.revature.eval.java.core;
 
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -588,8 +589,6 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-
-			System.out.println(string);
 						
 			string = string.replaceAll("\\W+", "");
 			string = string.toLowerCase();
@@ -603,7 +602,6 @@ public class EvaluationService {
 					result += c;
 				}
 			}
-			System.out.println(result);
 			return result;
 		}
 	}
@@ -649,8 +647,32 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isPangram(String string) {
-		// TODO Write an implementation for this method declaration
-		return false;
+		
+		if (string == null) {
+	        return false;
+	    }
+		
+		string = string.toLowerCase().replaceAll("\\W+", "");
+		string = string.replaceAll("\\d+", "");
+				
+		// create map of each lower case letter and set value to false
+		Map<Integer, Boolean>  letterMarker = new HashMap<Integer, Boolean>();
+		for(int i = 'a'; i < 'z'; i++) {
+			letterMarker.put(i, false);
+		}
+	    
+	    for (int i = 0; i < string.length(); i++) {
+	        letterMarker.put((int)string.charAt(i), true); // set that key to true when each letter is hit
+	    }
+	    
+	    // check each map entry for a true or false value
+	    for (Map.Entry<Integer, Boolean> entry : letterMarker.entrySet()) {
+	    	if (!entry.getValue()) {
+	    		return false;
+	    	}
+	    }
+	    
+	    return true;
 	}
 
 	/**
