@@ -550,11 +550,35 @@ public class EvaluationService {
 		 * Question 13
 		 * 
 		 * @param string
-		 * @return
+		 * @return atBashCipher
 		 */
 		public static String encode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+			
+			string = string.replaceAll("\\W+", "");
+			string = string.toLowerCase();
+			String cipherText = "";
+			String atBashCipher = "";
+			int charCount = 0;
+			
+			for (char c : string.toCharArray()) {
+				if(Character.isLetter(c)) {
+					cipherText += (char) ('a' + ('z' - c));
+				}
+				else {
+					cipherText += c;
+				}
+			}
+			
+			for (int i = 0; i < cipherText.length(); i++) {
+				charCount++;
+
+				atBashCipher += cipherText.charAt(i);
+				if(charCount == 5) {
+					charCount = 0;
+					atBashCipher += " ";
+				}
+			}
+			return atBashCipher.stripTrailing();
 		}
 
 		/**
@@ -564,8 +588,23 @@ public class EvaluationService {
 		 * @return
 		 */
 		public static String decode(String string) {
-			// TODO Write an implementation for this method declaration
-			return null;
+
+			System.out.println(string);
+						
+			string = string.replaceAll("\\W+", "");
+			string = string.toLowerCase();
+			String result = "";
+			
+			for (char c : string.toCharArray()) {
+				if(Character.isLetter(c)) {
+					result += (char) ('z' + ('a' - c));
+				}
+				else {
+					result += c;
+				}
+			}
+			System.out.println(result);
+			return result;
 		}
 	}
 
