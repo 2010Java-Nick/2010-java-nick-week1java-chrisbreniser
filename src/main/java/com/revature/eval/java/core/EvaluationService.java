@@ -1,5 +1,8 @@
 package com.revature.eval.java.core;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.temporal.ChronoUnit;
 import java.time.temporal.Temporal;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -671,7 +674,6 @@ public class EvaluationService {
 	    		return false;
 	    	}
 	    }
-	    
 	    return true;
 	}
 
@@ -685,7 +687,13 @@ public class EvaluationService {
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
 		// TODO Write an implementation for this method declaration
-		return null;
+		if (given.isSupported(ChronoUnit.SECONDS)) {
+			return given.plus(1_000_000_000, ChronoUnit.SECONDS);
+		} else {
+			LocalDate date = LocalDate.from(given);
+			LocalDateTime dateTime = date.atStartOfDay();
+			return dateTime.plus(1_000_000_000, ChronoUnit.SECONDS);
+		}
 	}
 
 	/**
@@ -776,6 +784,14 @@ public class EvaluationService {
 	 */
 	public int solveWordProblem(String string) {
 		// TODO Write an implementation for this method declaration
+		
+		// find what, is, and by and replace them with space
+		
+		// parse data into leftOp, rightOp, and 
+		
+		// set left and right operator from resluting string
+		
+		// 
 		return 0;
 	}
 
