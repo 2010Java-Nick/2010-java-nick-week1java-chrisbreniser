@@ -449,7 +449,6 @@ public class EvaluationService {
 
 		public String rotate(String string) {
 			
-			System.out.println("string was: " + string);
 			StringBuffer cipher = new StringBuffer();
 			
 			for (int i = 0; i < string.length(); i++){
@@ -466,9 +465,7 @@ public class EvaluationService {
 					cipher.append(string.charAt(i));
 				}
 			}
-			
 			string = cipher.toString();
-			System.out.println(string);
 			
 			return string;
 		}
@@ -487,11 +484,37 @@ public class EvaluationService {
 	 * numbers, pretend they don't exist and implement them yourself.
 	 * 
 	 * @param i
-	 * @return
+	 * @return num
 	 */
 	public int calculateNthPrime(int i) {
-		// TODO Write an implementation for this method declaration
-		return 0;
+		if (i < 2) {
+			if (i == 1)
+				return 2;
+			if (i < 1)
+				throw new IllegalArgumentException("Invalid number");
+		}
+		int count = 1;
+		int num = 1; // first num to check
+		
+		while(count < i) {
+			num += 2;
+			if (this.isPrime(num)) {
+				count += 1;
+			}
+		}
+		return num;	
+	}
+	
+	// method to check prime numbers
+	private boolean isPrime(int num) {
+		int factor = 2;
+		while (factor * factor <= num) {
+			if (num % factor == 0) {
+				return false;
+			}
+			factor++;
+		}
+		return true;
 	}
 
 	/**
@@ -519,7 +542,10 @@ public class EvaluationService {
 	 *
 	 */
 	static class AtbashCipher {
-
+		
+		String forward = "abcdefghijklmnopqrstuvwxyz";
+		String reverse = "zyxwvutsrqponmlkjihgfedcba";
+		
 		/**
 		 * Question 13
 		 * 
