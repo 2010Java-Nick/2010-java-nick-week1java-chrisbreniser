@@ -632,7 +632,43 @@ public class EvaluationService {
 	 * @return
 	 */
 	public boolean isValidIsbn(String string) {
-		// TODO Write an implementation for this method declaration
+		
+		string = string.replaceAll("\\W+", "");
+		
+		System.out.println(string);
+		
+		int intToCheck = 0;
+		int multiplier = 10;
+		
+		for (char c : string.toCharArray()) {
+			System.out.println("checking: " + c);
+			System.out.println("checking: " + ((int)c - 48));
+			if (multiplier == 1 && Character.isAlphabetic(c)) {
+				if (c == 'X') {
+					System.out.println("Found an X");
+					System.out.println("Doing: + 10");
+					intToCheck += 10;
+				} else {
+					return false;
+				}
+			} else {
+				System.out.println("Doing: " + ((int)c - 48) + " * " + multiplier);
+				System.out.println("Equals: " + ((int)c - 48) * multiplier);
+
+				intToCheck += ((int)c - 48) * multiplier;
+				multiplier--;
+			}
+			
+			
+		}
+		
+		System.out.println("intToCheck: " + intToCheck);
+		System.out.println(intToCheck % 11);
+		
+		if(intToCheck % 11 == 0) {
+			return true;
+		}
+		
 		return false;
 	}
 
@@ -724,15 +760,11 @@ public class EvaluationService {
 				current += start;
 			}
 		}
-		
-		System.out.println(multiples);
-		
+				
 		for (int num : multiples) {
 			sum += num;
 		}
-		
-		System.out.println("Sum: " + sum);
-		
+				
 		return sum;
 	}
 
@@ -775,9 +807,7 @@ public class EvaluationService {
 	public boolean isLuhnValid(String string) {
 		// TODO Write an implementation for this method declaration
 		
-		List<Integer> 
-		
-		return false;
+	    return false;		
 	}
 
 	/**
@@ -808,16 +838,24 @@ public class EvaluationService {
 	 * @return
 	 */
 	public int solveWordProblem(String string) {
-		// TODO Write an implementation for this method declaration
 		
 		// find what, is, and by and replace them with space
+		String[] wordProblem = string.toLowerCase().replaceAll("[^a-z0-9\\-\\s+]", "").split("\\s+");
+
+//		System.out.println(Integer.parseInt(wordProblem[2]) + " + " + Integer.parseInt(wordProblem[4]) + " = " + (Integer.parseInt(wordProblem[2]) + Integer.parseInt(wordProblem[4])));
 		
-		// parse data into leftOp, rightOp, and 
+		switch (wordProblem[3]) {
+		case "plus":
+			return Integer.parseInt(wordProblem[2]) + Integer.parseInt(wordProblem[4]);
+		case "minus":
+			return Integer.parseInt(wordProblem[2]) - Integer.parseInt(wordProblem[4]);
+		case "multiplied":
+			return Integer.parseInt(wordProblem[2]) * Integer.parseInt(wordProblem[5]);
+		case "devided":
+			return Integer.parseInt(wordProblem[2]) / Integer.parseInt(wordProblem[5]);
+		}
 		
-		// set left and right operator from resluting string
-		
-		// 
-		return 0;
+		return 0; 
 	}
 
 }
